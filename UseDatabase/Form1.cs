@@ -146,6 +146,10 @@ namespace UseDatabase
             {
                 _databaseConfig = Configuration.InternalTraining();
             }
+            if ((string)DatabaseComboBox.SelectedItem == Database.Dev_QA.ToString())
+            {
+                _databaseConfig = Configuration.DevQA();
+            }
         }
     }
 }

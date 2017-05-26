@@ -24,6 +24,22 @@ namespace UseDatabase
             return _devTwo;
         }
 
+        public static List<KeyValuePair<string, string>> DevQA()
+        {
+            List<KeyValuePair<string, string>> _devQA = new List<KeyValuePair<string, string>>()
+        {
+            new KeyValuePair<string, string>("HostName", @"172.21.0.146\SQLServer14"),
+            new KeyValuePair<string, string>("Database", "Visionblue_Dev_QA"),
+             new KeyValuePair<string, string>("DriverName", "DevartSQLServer"),
+              new KeyValuePair<string, string>("User_Name", "InsolvUK"),
+               new KeyValuePair<string, string>("Password", "Y?4£2Wb"),
+               new KeyValuePair<string, string>("OS Authentication", "False"),
+               new KeyValuePair<string, string>("UseUnicode", "False")
+
+        };
+            return _devQA;
+        }
+
         public static List<KeyValuePair<string, string>> StandardQA()
         {
             List<KeyValuePair<string, string>> _standardQA = new List<KeyValuePair<string, string>>()
