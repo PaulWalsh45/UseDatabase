@@ -13,7 +13,8 @@ namespace UseDatabase
         Fairpoint_QA,
         Custom_QA,
         Stepchange_QA,
-        Aperture
+        Aperture,
+        Internal_Training
 
     }
 }

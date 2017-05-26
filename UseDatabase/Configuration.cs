@@ -104,6 +104,21 @@ namespace UseDatabase
              return _aperture;
         }
 
+        public static List<KeyValuePair<string, string>> InternalTraining()
+        {
+            List<KeyValuePair<string, string>> _internalTraining = new List<KeyValuePair<string, string>>()
+        {
+        new KeyValuePair<string, string>("HostName", @"172.21.0.146\SQLStandard"),
+            new KeyValuePair<string, string>("Database", "VisionblueUK_Internal_Training"),
+             new KeyValuePair<string, string>("DriverName", "DevartSQLServer"),
+              new KeyValuePair<string, string>("User_Name", "InsolvUK"),
+               new KeyValuePair<string, string>("Password", "Y?4£2Wb"),
+               new KeyValuePair<string, string>("OS Authentication", "False"),
+               new KeyValuePair<string, string>("UseUnicode", "False")
+        };
+            return _internalTraining;
+        }
+
 
     }
 }
