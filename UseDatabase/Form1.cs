@@ -27,9 +27,12 @@ namespace UseDatabase
 
             //defaults
             VisionblueCheckBox.Checked = true;
-            VisualStudioCheckBox.Checked = true;
-            DelphiCheckBox.Checked = true;
-            QAPreCheckBox.Checked = true;
+            VisualStudioDevCheckBox.Checked = true;
+            Delphi18CheckBox.Checked = true;
+            VisualStudioQACheckBox.Checked = true;
+            DelphiDebugQACheckbox.Checked = true;
+            DelphiDebugDevCheckbox.Checked = true;
+
 
         }
 
@@ -51,7 +54,7 @@ namespace UseDatabase
                 }
                
             }
-            if (VisualStudioCheckBox.Checked == true)//Visual Studio debug DEV
+            if (VisualStudioDevCheckBox.Checked == true)//Visual Studio debug DEV
             {
                 string filePath = @"E:\TFS\PROJECTS\SE.02.0022 - InSolv Technologies (InSolv)\Visionblue .Net\Sandbox\TestClient\TestClient\bin\Debug\dbxconnections.ini";
                 _filePaths.Add(filePath); 
@@ -65,7 +68,7 @@ namespace UseDatabase
                 }
             }
             
-            if (DelphiCheckBox.Checked == true)//Delphi debug
+            if (Delphi18CheckBox.Checked == true)//Delphi debug
             {
                 string filePath = @"C:\Users\Public\Documents\Embarcadero\Studio\dbExpress\18.0\dbxconnections.ini";
                 _filePaths.Add(filePath); 
@@ -79,7 +82,7 @@ namespace UseDatabase
                 }
             }
 
-            if (QAPreCheckBox.Checked == true)// Visual Studio debug QA
+            if (VisualStudioQACheckBox.Checked == true)// Visual Studio debug QA
             {
                 string filePath = @"E:\TFS\PROJECTS\QA\Visionblue .Net\Sandbox\TestClient\TestClient\bin\Debug\dbxconnections.ini";
                 _filePaths.Add(filePath); 
@@ -92,6 +95,36 @@ namespace UseDatabase
                                                         filePath);
                 }
             }
+
+            if (DelphiDebugQACheckbox.Checked == true)// Embarcadero debug QA
+            {
+                string filePath = @"E:\TFS\PROJECTS\QA\Delphi\02 - Insolv UK\GUI\win32\DLL\dbxconnections.ini";
+                _filePaths.Add(filePath);
+                string sectionName = "InsolvUK";
+                foreach (var item in _databaseConfig)
+                {
+                    NativeMethods.WritePrivateProfileString(sectionName,
+                                                        item.Key,
+                                                        item.Value,
+                                                        filePath);
+                }
+            }
+            
+            if (DelphiDebugDevCheckbox.Checked == true)// Embarcadero debug Dev
+            {
+                string filePath = @"E:\TFS\PROJECTS\SE.02.0022 - InSolv Technologies (InSolv)\Delphi\02 - Insolv UK\GUI\win32\DLL\dbxconnections.ini";
+                _filePaths.Add(filePath);
+                string sectionName = "InsolvUK";
+                foreach (var item in _databaseConfig)
+                {
+                    NativeMethods.WritePrivateProfileString(sectionName,
+                                                        item.Key,
+                                                        item.Value,
+                                                        filePath);
+                }
+            }
+
+
             //Option to open the files after changing to check the info is correct
             DialogResult dialogResult = MessageBox.Show("Database Config file(s) changed to " + _databaseChanged + " at selected location(s)\nDo you want to open these files?", "Database Ini File Change Notification", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (dialogResult == DialogResult.Yes)
