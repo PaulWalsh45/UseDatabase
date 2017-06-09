@@ -19,6 +19,13 @@ namespace UseDatabase
         private List<KeyValuePair<string, string>> _databaseConfig = new List<KeyValuePair<string, string>>();
         private string _databaseChanged = string.Empty;
         private List<string> _filePaths = new List<string>();
+        //filepaths
+        private string _vsDevDebugFilepath = @"E:\TFS\PROJECTS\SE.02.0022 - InSolv Technologies (InSolv)\Visionblue .Net\Sandbox\TestClient\TestClient\bin\Debug\dbxconnections.ini";
+        private string _vsQADebugFilepath = @"E:\TFS\PROJECTS\QA\Visionblue .Net\Sandbox\TestClient\TestClient\bin\Debug\dbxconnections.ini";
+        private string _cInsolvUkFilepath = @"C:\InsolvUK\dbxconnections.ini";
+        private string _delphi18Filepath = @"C:\Users\Public\Documents\Embarcadero\Studio\dbExpress\18.0\dbxconnections.ini";
+        private string _delphiDevDebugFilepath = @"E:\TFS\PROJECTS\SE.02.0022 - InSolv Technologies (InSolv)\Delphi\02 - Insolv UK\GUI\win32\DLL\dbxconnections.ini";
+        private string _delphiQADebugFilepath = @"E:\TFS\PROJECTS\QA\Delphi\02 - Insolv UK\GUI\win32\DLL\dbxconnections.ini";
 
         public Form1()
         {
@@ -42,85 +49,85 @@ namespace UseDatabase
 
             if (VisionblueCheckBox.Checked == true)//Visionblue.exe
             {
-                string filePath = @"C:\InsolvUK\dbxconnections.ini";
-                _filePaths.Add(filePath);
+                //string filePath = @"C:\InsolvUK\dbxconnections.ini";
+                _filePaths.Add(_cInsolvUkFilepath);
                 string sectionName = "InsolvUK";
                 foreach (var item in _databaseConfig)
                 {
                     NativeMethods.WritePrivateProfileString(sectionName,
                                                         item.Key,
                                                         item.Value,
-                                                        filePath);
+                                                        _cInsolvUkFilepath);
                 }
                
             }
             if (VisualStudioDevCheckBox.Checked == true)//Visual Studio debug DEV
             {
-                string filePath = @"E:\TFS\PROJECTS\SE.02.0022 - InSolv Technologies (InSolv)\Visionblue .Net\Sandbox\TestClient\TestClient\bin\Debug\dbxconnections.ini";
-                _filePaths.Add(filePath); 
+                //string filePath = @"E:\TFS\PROJECTS\SE.02.0022 - InSolv Technologies (InSolv)\Visionblue .Net\Sandbox\TestClient\TestClient\bin\Debug\dbxconnections.ini";
+                _filePaths.Add(_vsDevDebugFilepath); 
                 string sectionName = "InsolvUK";
                 foreach (var item in _databaseConfig)
                 {
                     NativeMethods.WritePrivateProfileString(sectionName,
                                                         item.Key,
                                                         item.Value,
-                                                        filePath);
+                                                        _vsDevDebugFilepath);
                 }
             }
             
             if (Delphi18CheckBox.Checked == true)//Delphi debug
             {
-                string filePath = @"C:\Users\Public\Documents\Embarcadero\Studio\dbExpress\18.0\dbxconnections.ini";
-                _filePaths.Add(filePath); 
+                //string filePath = @"C:\Users\Public\Documents\Embarcadero\Studio\dbExpress\18.0\dbxconnections.ini";
+                _filePaths.Add(_delphi18Filepath); 
                 string sectionName = "InsolvUK";
                 foreach (var item in _databaseConfig)
                 {
                     NativeMethods.WritePrivateProfileString(sectionName,
                                                         item.Key,
                                                         item.Value,
-                                                        filePath);
+                                                        _delphi18Filepath);
                 }
             }
 
             if (VisualStudioQACheckBox.Checked == true)// Visual Studio debug QA
             {
-                string filePath = @"E:\TFS\PROJECTS\QA\Visionblue .Net\Sandbox\TestClient\TestClient\bin\Debug\dbxconnections.ini";
-                _filePaths.Add(filePath); 
+                //string filePath = @"E:\TFS\PROJECTS\QA\Visionblue .Net\Sandbox\TestClient\TestClient\bin\Debug\dbxconnections.ini";
+                _filePaths.Add(_vsQADebugFilepath); 
                 string sectionName = "InsolvUK";
                 foreach (var item in _databaseConfig)
                 {
                     NativeMethods.WritePrivateProfileString(sectionName,
                                                         item.Key,
                                                         item.Value,
-                                                        filePath);
+                                                        _vsQADebugFilepath);
                 }
             }
 
             if (DelphiDebugQACheckbox.Checked == true)// Embarcadero debug QA
             {
-                string filePath = @"E:\TFS\PROJECTS\QA\Delphi\02 - Insolv UK\GUI\win32\DLL\dbxconnections.ini";
-                _filePaths.Add(filePath);
+                //string filePath = @"E:\TFS\PROJECTS\QA\Delphi\02 - Insolv UK\GUI\win32\DLL\dbxconnections.ini";
+                _filePaths.Add(_delphiQADebugFilepath);
                 string sectionName = "InsolvUK";
                 foreach (var item in _databaseConfig)
                 {
                     NativeMethods.WritePrivateProfileString(sectionName,
                                                         item.Key,
                                                         item.Value,
-                                                        filePath);
+                                                        _delphiQADebugFilepath);
                 }
             }
             
             if (DelphiDebugDevCheckbox.Checked == true)// Embarcadero debug Dev
             {
-                string filePath = @"E:\TFS\PROJECTS\SE.02.0022 - InSolv Technologies (InSolv)\Delphi\02 - Insolv UK\GUI\win32\DLL\dbxconnections.ini";
-                _filePaths.Add(filePath);
+                //string filePath = @"E:\TFS\PROJECTS\SE.02.0022 - InSolv Technologies (InSolv)\Delphi\02 - Insolv UK\GUI\win32\DLL\dbxconnections.ini";
+                _filePaths.Add(_delphiDevDebugFilepath);
                 string sectionName = "InsolvUK";
                 foreach (var item in _databaseConfig)
                 {
                     NativeMethods.WritePrivateProfileString(sectionName,
                                                         item.Key,
                                                         item.Value,
-                                                        filePath);
+                                                        _delphiDevDebugFilepath);
                 }
             }
 
@@ -183,6 +190,60 @@ namespace UseDatabase
             {
                 _databaseConfig = Configuration.DevQA();
             }
+        }
+
+        private void OpenFileButton1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            Process process = new Process();
+            process.StartInfo.FileName = _vsDevDebugFilepath;
+            process.StartInfo.UseShellExecute = true;
+            process.Start();
+        }
+
+        private void OpenFileButton2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            Process process = new Process();
+            process.StartInfo.FileName = _vsQADebugFilepath;
+            process.StartInfo.UseShellExecute = true;
+            process.Start();
+        }
+
+        private void OpenFileButton3_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            Process process = new Process();
+            process.StartInfo.FileName = _cInsolvUkFilepath;
+            process.StartInfo.UseShellExecute = true;
+            process.Start();
+        }
+
+        private void OpenFileButton4_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            Process process = new Process();
+            process.StartInfo.FileName = _delphi18Filepath;
+            process.StartInfo.UseShellExecute = true;
+            process.Start();
+        }
+
+        private void OpenFileButton5_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            Process process = new Process();
+            process.StartInfo.FileName = _delphiQADebugFilepath;
+            process.StartInfo.UseShellExecute = true;
+            process.Start();
+        }
+
+        private void OpenFileButton6_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            Process process = new Process();
+            process.StartInfo.FileName = _delphiDevDebugFilepath;
+            process.StartInfo.UseShellExecute = true;
+            process.Start();
         }
     }
 }
